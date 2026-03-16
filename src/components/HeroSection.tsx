@@ -56,7 +56,7 @@ const HeroSection = () => {
             <Button
               variant="hero"
               size="lg"
-              className="rounded-full px-8 text-base animate-pulse-glow"
+              className="rounded-full px-8 text-base"
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               Talk to Us <ArrowRight size={18} />

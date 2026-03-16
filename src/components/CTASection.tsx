@@ -33,7 +33,7 @@ const CTASection = () => {
             <Button
               variant="hero"
               size="lg"
-              className="rounded-full px-8 text-base animate-pulse-glow"
+              className="rounded-full px-8 text-base"
               onClick={() => setFormOpen(true)}
             >
               Contact Us <ArrowRight size={18} />

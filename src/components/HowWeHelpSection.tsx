@@ -29,8 +29,8 @@ const HowWeHelpSection = () => {
 
   return (
     <section id="how-we-help" className="py-24 bg-dark relative overflow-hidden">
-      {/* Subtle glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl pointer-events-none animate-pulse-glow" />
+      {/* Subtle background glow — static, no animation */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div
@@ -48,11 +48,11 @@ const HowWeHelpSection = () => {
           </p>
         </div>
 
-        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <div
               key={step.label}
-              className={`group flex items-center gap-4 bg-dark-bg-foreground/5 border border-dark-bg-foreground/10 rounded-xl px-5 py-4 hover:bg-primary/70 hover:backdrop-blur-lg hover:border-primary/40 hover:shadow-[0_12px_45px_-8px_hsl(219,61%,43%,0.4)] hover:-translate-y-1.5 transition-all duration-300 ${
+              className={`group flex items-center gap-4 bg-dark-bg-foreground/5 border border-dark-bg-foreground/10 border-l-2 border-l-transparent rounded-xl px-5 py-4 hover:border-l-primary hover:bg-dark-bg-foreground/8 hover:shadow-[0_8px_24px_-6px_hsl(219_61%_43%_/_0.2)] hover:-translate-y-1 transition-all duration-300 ${
                 grid.isVisible
                   ? i % 2 === 0
                     ? "opacity-100 translate-x-0"
@@ -63,11 +63,11 @@ const HowWeHelpSection = () => {
               }`}
               style={{ transitionDelay: `${i * 70}ms`, transitionDuration: "600ms" }}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-primary group-hover:bg-white/30 flex items-center justify-center transition-colors duration-300">
-                <step.icon size={18} className="text-primary-foreground group-hover:text-white" />
+              <div className="flex-shrink-0 w-9 h-9 rounded-lg border border-primary/30 bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/60 transition-all duration-300">
+                <step.icon size={16} className="text-primary" />
               </div>
-              <span className="text-dark-bg-foreground font-medium text-sm group-hover:text-white transition-colors">{step.label}</span>
-              <span className="ml-auto text-xs text-dark-bg-foreground/30 font-heading font-bold group-hover:text-white/60 transition-colors">
+              <span className="text-dark-bg-foreground/80 font-medium text-sm group-hover:text-dark-bg-foreground transition-colors">{step.label}</span>
+              <span className="ml-auto text-xs text-dark-bg-foreground/25 font-heading font-bold tabular-nums group-hover:text-primary/60 transition-colors">
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>

@@ -42,28 +42,28 @@ const StudentsSection = () => {
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
               Init Services helps students build real-world skills, contribute to open source, and create standout projects for their careers.
             </p>
-            <Button variant="default" className="rounded-full px-6 animate-pulse-glow">
+            <Button variant="default" className="rounded-full px-6">
               Get Started <ArrowRight size={16} />
             </Button>
           </div>
 
           {/* Right */}
-          <div ref={right.ref} className="space-y-5">
+          <div ref={right.ref} className="space-y-4">
             {offerings.map((item, i) => (
               <div
                 key={item.title}
-                className={`bg-card border border-border rounded-xl p-6 shadow-card hover:bg-accent/80 hover:backdrop-blur-lg hover:border-accent/60 hover:shadow-card-hover hover:-translate-y-2 hover:-rotate-[0.35deg] transition-all duration-300 group ${
+                className={`group relative bg-card border border-border border-l-2 border-l-transparent rounded-xl p-5 shadow-card hover:border-l-primary hover:-translate-y-1 hover:shadow-[0_10px_28px_-8px_hsl(219_61%_43%_/_0.2)] transition-all duration-300 ${
                   right.isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
                 }`}
                 style={{ transitionDelay: `${i * 120}ms`, transitionDuration: "650ms" }}
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-11 h-11 rounded-lg bg-accent/20 flex items-center justify-center group-hover:bg-white/30 group-hover:shadow-[0_4px_12px_rgba(255,255,255,0.2)] transition-all duration-300">
-                    <item.icon size={20} className="text-accent group-hover:text-white transition-colors" />
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg border border-primary/25 bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
+                    <item.icon size={18} className="text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-heading font-semibold text-foreground mb-1 group-hover:text-white transition-colors">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-white/90 transition-colors">{item.desc}</p>
+                    <h3 className="font-heading font-semibold text-foreground mb-1 group-hover:text-primary transition-colors duration-300">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               </div>

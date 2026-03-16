@@ -77,20 +77,20 @@ const ServicesSection = () => {
         </div>
 
         {/* Grid */}
-        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((svc, i) => (
             <div
               key={svc.title}
-              className={`group bg-card border border-border rounded-xl p-6 shadow-card hover:bg-primary/75 hover:backdrop-blur-lg hover:border-primary/50 hover:shadow-card-hover hover:-translate-y-2 hover:-rotate-[0.35deg] transition-all duration-300 ${
+              className={`group relative bg-card border border-border border-l-2 border-l-transparent rounded-xl p-6 shadow-card hover:border-l-primary hover:-translate-y-1.5 hover:shadow-[0_12px_32px_-8px_hsl(219_61%_43%_/_0.2)] transition-all duration-300 ${
                 grid.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
               style={{ transitionDelay: `${i * 75}ms`, transitionDuration: "600ms" }}
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4 group-hover:bg-white/30 group-hover:shadow-[0_4px_12px_rgba(255,255,255,0.2)] transition-all duration-300">
-                <svc.icon size={22} className="text-primary group-hover:text-white transition-colors" />
+              <div className="w-11 h-11 rounded-lg border border-primary/25 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
+                <svc.icon size={20} className="text-primary" />
               </div>
-              <h3 className="font-heading font-semibold text-foreground text-lg mb-2 group-hover:text-white transition-colors">{svc.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-white/90 transition-colors">{svc.desc}</p>
+              <h3 className="font-heading font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors duration-300">{svc.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{svc.desc}</p>
             </div>
           ))}
         </div>
