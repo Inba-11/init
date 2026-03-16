@@ -6,12 +6,12 @@
 
 /*
   Palette – "Dark Neutral + Blue Accent"
-  #090909  → HSL  0   0%   4%   (almost black  – page background)
-  #1E1E20  → HSL 240   3%  12%  (very dark grey – cards / sections)
-  #3B3B3D  → HSL 240   2%  24%  (dark grey      – borders / secondary surfaces)
-  #797979  → HSL   0   0%  47%  (medium grey    – muted text / icons)
-  #9E9EA2  → HSL 240   2%  63%  (light grey     – body text)
-  #2B59B0  → HSL 219  61%  43%  (blue accent    – primary / buttons / highlights)
+  #090909  → HSL  0   0%   4%
+  #1E1E20  → HSL 240   3%  12%
+  #3B3B3D  → HSL 240   2%  24%
+  #797979  → HSL   0   0%  47%
+  #9E9EA2  → HSL 240   2%  63%
+  #2B59B0  → HSL 219  61%  43%
 */
 
 @layer base {
@@ -44,18 +44,20 @@
     --input:             240   2%  24%;
     --ring:              219  61%  43%;
 
-    --radius: 0.75rem;
+    /* Sharp corners globally */
+    --radius: 0.3rem;
 
     --dark-bg:             0   0%   4%;
     --dark-bg-foreground: 240   2%  63%;
 
     --gradient-primary: linear-gradient(135deg, hsl(219, 61%, 43%), hsl(219, 61%, 55%));
-    --gradient-hero:    linear-gradient(135deg, hsl(0, 0%, 4%) 0%, hsl(240, 3%, 10%) 50%, hsl(219, 40%, 12%) 100%);
+    --gradient-hero:    linear-gradient(180deg, hsl(0, 0%, 4%) 0%, hsl(240, 3%, 8%) 60%, hsl(219, 35%, 10%) 100%);
     --gradient-accent:  linear-gradient(135deg, hsl(219, 61%, 43%), hsl(219, 61%, 58%));
 
-    --shadow-card:       0 10px 30px -12px hsl(0 0% 0% / 0.55);
-    --shadow-card-hover: 0 18px 45px -15px hsl(219 61% 43% / 0.40);
-    --shadow-hero:       0 22px 70px -18px hsl(219 61% 43% / 0.45);
+    /* Crisp shadows — precise offset, minimal blur */
+    --shadow-card:       0 1px 4px 0 hsl(0 0% 0% / 0.7), 0 0 0 1px hsl(240 2% 24% / 0.6);
+    --shadow-card-hover: 0 2px 12px -2px hsl(219 61% 43% / 0.3), 0 0 0 1px hsl(219 61% 43% / 0.3);
+    --shadow-hero:       0 4px 24px -4px hsl(219 61% 43% / 0.4);
 
     --font-heading: 'Plus Jakarta Sans', sans-serif;
     --font-body:    'Inter', sans-serif;
@@ -90,6 +92,8 @@
     --border:            240   2%  24%;
     --input:             240   2%  24%;
     --ring:              219  61%  43%;
+    --shadow-card:       0 1px 4px 0 hsl(0 0% 0% / 0.7), 0 0 0 1px hsl(240 2% 24% / 0.6);
+    --shadow-card-hover: 0 2px 12px -2px hsl(219 61% 43% / 0.3), 0 0 0 1px hsl(219 61% 43% / 0.3);
     --sidebar-background:240   3%  12%;
     --sidebar-foreground:240   2%  63%;
     --sidebar-primary:   219  61%  43%;
@@ -110,52 +114,35 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     cursor: none;
-    /* Prevent horizontal overflow on mobile */
     overflow-x: hidden;
   }
 
-  /* Restore default cursor on touch devices */
-  @media (hover: none) and (pointer: coarse) {
-    body {
-      cursor: auto;
-    }
-    a, button, [role="button"], input, textarea, select, label {
-      cursor: auto;
-    }
-  }
-
-  /* Touch-device pointer cursor for desktop */
-  @media (hover: hover) and (pointer: fine) {
-    a, button, [role="button"], input, textarea, select, label {
-      cursor: none;
-    }
-  }
-
+  /* Headings — tight tracking for crisp, technical feel */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  /* Touch devices: restore system cursor */
+  @media (hover: none) and (pointer: coarse) {
+    body { cursor: auto; }
+    a, button, [role="button"], input, textarea, select, label { cursor: auto; }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    a, button, [role="button"], input, textarea, select, label { cursor: none; }
   }
 
   html, body {
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 
-  html::-webkit-scrollbar,
-  body::-webkit-scrollbar {
-    display: none;
-  }
+  button, a, [role="button"] { touch-action: manipulation; }
 
-  /* Minimum tap target size for touch */
-  button, a, [role="button"] {
-    touch-action: manipulation;
-  }
+  html { scroll-behavior: smooth; }
 
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-
-  /* Better iOS input styling */
   input, textarea, select {
     -webkit-appearance: none;
     appearance: none;
@@ -163,6 +150,20 @@
 }
 
 @layer utilities {
+  /* ── Grid / dot background pattern ─────────────────────── */
+  .grid-pattern {
+    background-image:
+      linear-gradient(hsl(240 2% 63% / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(240 2% 63% / 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(hsl(240 2% 63% / 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* ── Text gradient ──────────────────────────────────────── */
   .text-gradient-primary {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -170,57 +171,51 @@
     background-clip: text;
   }
 
-  .bg-gradient-primary {
-    background: var(--gradient-primary);
-  }
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .bg-gradient-hero    { background: var(--gradient-hero); }
+  .bg-gradient-accent  { background: var(--gradient-accent); }
 
-  .bg-gradient-hero {
-    background: var(--gradient-hero);
-  }
+  /* ── Shadows ────────────────────────────────────────────── */
+  .shadow-card       { box-shadow: var(--shadow-card); }
+  .shadow-card-hover { box-shadow: var(--shadow-card-hover); }
+  .shadow-hero       { box-shadow: var(--shadow-hero); }
 
-  .bg-gradient-accent {
-    background: var(--gradient-accent);
-  }
-
-  .shadow-card {
-    box-shadow: var(--shadow-card);
-  }
-
-  .shadow-card-hover {
-    box-shadow: var(--shadow-card-hover);
-  }
-
-  .shadow-hero {
-    box-shadow: var(--shadow-hero);
-  }
-
+  /* ── Lift interaction ───────────────────────────────────── */
   .hover-lift-soft {
-    transition: transform 200ms ease, box-shadow 220ms ease, background-color 220ms ease, border-color 220ms ease;
+    transition: transform 200ms ease, box-shadow 220ms ease, border-color 220ms ease;
   }
-
   .hover-lift-soft:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-card-hover);
   }
-
-  /* Touch active state replaces hover for cards */
   @media (hover: none) and (pointer: coarse) {
-    .hover-lift-soft:hover {
-      transform: none;
-      box-shadow: var(--shadow-card);
-    }
-    .hover-lift-soft:active {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-card-hover);
-    }
+    .hover-lift-soft:hover { transform: none; box-shadow: var(--shadow-card); }
+    .hover-lift-soft:active { transform: translateY(-2px); box-shadow: var(--shadow-card-hover); }
   }
 
+  /* ── Section label chip (sharp / technical) ─────────────── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: hsl(var(--primary));
+    border: 1px solid hsl(var(--primary) / 0.35);
+    padding: 0.25rem 0.625rem;
+    border-radius: 3px;
+  }
+  .section-label::before { content: '//'; opacity: 0.5; font-weight: 400; }
+
+  /* ── Dark bg ────────────────────────────────────────────── */
   .bg-dark {
     background-color: hsl(var(--dark-bg));
     color: hsl(var(--dark-bg-foreground));
   }
 
-  /* Touch-friendly minimum tap target utility */
+  /* ── Tap target ─────────────────────────────────────────── */
   .tap-target {
     min-height: 44px;
     min-width: 44px;
