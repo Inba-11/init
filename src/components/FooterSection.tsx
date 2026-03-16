@@ -1,15 +1,21 @@
 import { Mail, Phone, MessageCircle } from "lucide-react";
-
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const FooterSection = () => {
+  const footer = useScrollReveal({ threshold: 0.15 });
+
   return (
     <footer id="contact" className="bg-dark py-16 border-t border-dark-bg-foreground/10">
-      <div className="container mx-auto px-4 lg:px-8">
+      <div
+        ref={footer.ref}
+        className={`container mx-auto px-4 lg:px-8 transition-all duration-700 ${
+          footer.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-
               <span className="font-heading text-xl font-bold text-dark-bg-foreground">
                 Init <span className="text-primary">Services</span>
               </span>
@@ -23,13 +29,9 @@ const FooterSection = () => {
           <div>
             <h4 className="font-heading font-semibold text-dark-bg-foreground mb-4">Contact Us</h4>
             <ul className="space-y-3">
-              {/* Phone 1 — Mohammed Syfudeen */}
               <li className="flex items-center gap-2 text-sm">
                 <Phone size={14} className="text-primary flex-shrink-0" />
-                <a
-                  href="tel:+919042649307"
-                  className="text-dark-bg-foreground/60 hover:text-primary transition-colors"
-                >
+                <a href="tel:+919042649307" className="text-dark-bg-foreground/60 hover:text-primary transition-colors">
                   +91 90426 49307
                 </a>
                 <a
@@ -43,13 +45,9 @@ const FooterSection = () => {
                 </a>
               </li>
 
-              {/* Phone 2 — Inbatamizhan */}
               <li className="flex items-center gap-2 text-sm">
                 <Phone size={14} className="text-primary flex-shrink-0" />
-                <a
-                  href="tel:+916379656457"
-                  className="text-dark-bg-foreground/60 hover:text-primary transition-colors"
-                >
+                <a href="tel:+916379656457" className="text-dark-bg-foreground/60 hover:text-primary transition-colors">
                   +91 63796 56457
                 </a>
                 <a
@@ -63,20 +61,16 @@ const FooterSection = () => {
                 </a>
               </li>
 
-              {/* Email 2 */}
               <li className="flex items-center gap-2 text-sm">
                 <Mail size={14} className="text-primary flex-shrink-0" />
-                <a
-                  href="mailto:initservices02@gmail.com"
-                  className="text-dark-bg-foreground/60 hover:text-primary transition-colors"
-                >
+                <a href="mailto:initservices02@gmail.com" className="text-dark-bg-foreground/60 hover:text-primary transition-colors">
                   initservices02@gmail.com
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Quick Links — right */}
+          {/* Quick Links */}
           <div>
             <h4 className="font-heading font-semibold text-dark-bg-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">

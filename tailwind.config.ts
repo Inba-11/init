@@ -91,8 +91,41 @@ export default {
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px hsl(217 91% 60% / 0.2)" },
-          "50%": { boxShadow: "0 0 40px hsl(217 91% 60% / 0.4)" },
+          "0%, 100%": { boxShadow: "0 0 20px hsl(219 61% 43% / 0.25)" },
+          "50%": { boxShadow: "0 0 50px hsl(219 61% 43% / 0.55)" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px) scale(1)" },
+          "50%": { transform: "translateY(-24px) scale(1.04)" },
+        },
+        "float-slow": {
+          "0%, 100%": { transform: "translateY(0px) translateX(0px)" },
+          "33%": { transform: "translateY(-18px) translateX(12px)" },
+          "66%": { transform: "translateY(10px) translateX(-8px)" },
+        },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "draw-line": {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.88)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "slide-up-soft": {
+          "0%": { opacity: "0", transform: "translateY(40px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-left": {
+          "0%": { opacity: "0", transform: "translateX(-40px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "slide-right": {
+          "0%": { opacity: "0", transform: "translateX(40px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
       },
       animation: {
@@ -102,6 +135,13 @@ export default {
         "fade-in": "fade-in 0.5s ease-out forwards",
         "slide-in-right": "slide-in-right 0.6s ease-out forwards",
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "float-slow": "float-slow 9s ease-in-out infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
+        "scale-in": "scale-in 0.5s ease-out forwards",
+        "slide-up-soft": "slide-up-soft 0.65s ease-out forwards",
+        "slide-left": "slide-left 0.65s ease-out forwards",
+        "slide-right": "slide-right 0.65s ease-out forwards",
       },
     },
   },
