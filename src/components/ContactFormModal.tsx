@@ -20,6 +20,8 @@ const RECIPIENT_EMAILS = [
   "dhivakar15102005@gmail.com",
 ].join(",");
 
+const GOOGLE_SHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbxOQ70d3Ra0FR3tRNQbCIf0MiviVcCFrybNMEwsbc-u4ixAQ78AOFkXvFczV3iyEg_d/exec";
+
 const hasOptions = ["Website", "Mobile App", "Instagram Business", "WhatsApp Business", "None"];
 const helpOptions = ["More customers", "Website", "Mobile app", "Posters / social media design", "Marketing", "Business automation"];
 
@@ -66,6 +68,29 @@ Open for a call: ${form.openToCall}
     `.trim();
 
     const gmailLink = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(RECIPIENT_EMAILS)}&su=${encodeURIComponent(`New Business Inquiry — ${form.name}`)}&body=${encodeURIComponent(body)}`;
+
+    // Log submission to Google Sheet (fire-and-forget)
+    if (GOOGLE_SHEET_WEBHOOK && !GOOGLE_SHEET_WEBHOOK.startsWith("PASTE")) {
+      fetch(GOOGLE_SHEET_WEBHOOK, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          business: form.business,
+          location: form.location,
+          has: form.has.join(", ") || "None",
+          help: form.help.join(", ") || "None",
+          problem: form.problem,
+          openToCall: form.openToCall,
+          gmailLink: gmailLink,
+        }),
+      }).catch(() => {
+        // Silently ignore — sheet logging should never block the user
+      });
+    }
+
     window.open(gmailLink, "_blank");
     onOpenChange(false);
   };
