@@ -28,31 +28,30 @@ const HowWeHelpSection = () => {
   const grid = useScrollReveal({ threshold: 0.08 });
 
   return (
-    <section id="how-we-help" className="py-24 bg-dark relative overflow-hidden">
-      {/* Subtle background glow — static, no animation */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+    <section id="how-we-help" className="py-16 sm:py-24 bg-dark relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div
           ref={header.ref}
-          className={`text-center max-w-2xl mx-auto mb-16 transition-all duration-700 ${
+          className={`text-center max-w-2xl mx-auto mb-10 sm:mb-16 transition-all duration-700 ${
             header.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <span className="text-sm font-semibold text-primary uppercase tracking-widest">How We Help</span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-dark-bg-foreground mt-3 mb-4">
+          <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-dark-bg-foreground mt-3 mb-4">
             Your full-cycle <span className="text-gradient-primary">tech partner</span>
           </h2>
-          <p className="text-dark-bg-foreground/60 text-lg">
+          <p className="text-dark-bg-foreground/60 text-base sm:text-lg">
             We don't just build — we plan, execute, maintain, and take full ownership of your digital journey.
           </p>
         </div>
 
-        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <div ref={grid.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {steps.map((step, i) => (
             <div
               key={step.label}
-              className={`group flex items-center gap-4 bg-dark-bg-foreground/5 border border-dark-bg-foreground/10 border-l-2 border-l-transparent rounded-xl px-5 py-4 hover:border-l-primary hover:bg-dark-bg-foreground/8 hover:shadow-[0_8px_24px_-6px_hsl(219_61%_43%_/_0.2)] hover:-translate-y-1 transition-all duration-300 ${
+              className={`group flex items-center gap-4 bg-dark-bg-foreground/5 border border-dark-bg-foreground/10 border-l-2 border-l-transparent rounded-xl px-4 sm:px-5 py-4 hover:border-l-primary active:border-l-primary hover:-translate-y-1 active:-translate-y-0.5 hover:shadow-[0_8px_24px_-6px_hsl(219_61%_43%_/_0.2)] transition-all duration-300 ${
                 grid.isVisible
                   ? i % 2 === 0
                     ? "opacity-100 translate-x-0"
@@ -61,7 +60,7 @@ const HowWeHelpSection = () => {
                   ? "opacity-0 -translate-x-6"
                   : "opacity-0 translate-x-6"
               }`}
-              style={{ transitionDelay: `${i * 70}ms`, transitionDuration: "600ms" }}
+              style={{ transitionDelay: `${i * 60}ms`, transitionDuration: "600ms" }}
             >
               <div className="flex-shrink-0 w-9 h-9 rounded-lg border border-primary/30 bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/60 transition-all duration-300">
                 <step.icon size={16} className="text-primary" />

@@ -58,35 +58,35 @@ const ServicesSection = () => {
   const grid = useScrollReveal({ threshold: 0.08 });
 
   return (
-    <section id="services" className="py-24 bg-background">
+    <section id="services" className="py-16 sm:py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section header */}
         <div
           ref={header.ref}
-          className={`text-center max-w-2xl mx-auto mb-16 transition-all duration-700 ${
+          className={`text-center max-w-2xl mx-auto mb-10 sm:mb-16 transition-all duration-700 ${
             header.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <span className="text-sm font-semibold text-primary uppercase tracking-widest">Our Services</span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
+          <h2 className="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
             Everything your business needs to <span className="text-gradient-primary">go digital</span>
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-base sm:text-lg">
             End-to-end digital solutions for businesses ready to grow, automate, and stand out.
           </p>
         </div>
 
-        {/* Grid */}
-        <div ref={grid.ref} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Grid — 1 col mobile, 2 col tablet, 4 col desktop */}
+        <div ref={grid.ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {services.map((svc, i) => (
             <div
               key={svc.title}
-              className={`group relative bg-card border border-border border-l-2 border-l-transparent rounded-xl p-6 shadow-card hover:border-l-primary hover:-translate-y-1.5 hover:shadow-[0_12px_32px_-8px_hsl(219_61%_43%_/_0.2)] transition-all duration-300 ${
+              className={`group relative bg-card border border-border border-l-2 border-l-transparent rounded-xl p-5 sm:p-6 shadow-card hover:border-l-primary active:border-l-primary hover:-translate-y-1.5 active:-translate-y-1 hover:shadow-[0_12px_32px_-8px_hsl(219_61%_43%_/_0.2)] active:shadow-[0_8px_20px_-6px_hsl(219_61%_43%_/_0.15)] transition-all duration-300 ${
                 grid.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
-              style={{ transitionDelay: `${i * 75}ms`, transitionDuration: "600ms" }}
+              style={{ transitionDelay: `${i * 60}ms`, transitionDuration: "600ms" }}
             >
-              <div className="w-11 h-11 rounded-lg border border-primary/25 bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
+              <div className="w-11 h-11 rounded-lg border border-primary/25 bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300">
                 <svc.icon size={20} className="text-primary" />
               </div>
               <h3 className="font-heading font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors duration-300">{svc.title}</h3>

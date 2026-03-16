@@ -46,16 +46,13 @@
 
     --radius: 0.75rem;
 
-    /* Dark hero / section backgrounds */
     --dark-bg:             0   0%   4%;
     --dark-bg-foreground: 240   2%  63%;
 
-    /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(219, 61%, 43%), hsl(219, 61%, 55%));
     --gradient-hero:    linear-gradient(135deg, hsl(0, 0%, 4%) 0%, hsl(240, 3%, 10%) 50%, hsl(219, 40%, 12%) 100%);
     --gradient-accent:  linear-gradient(135deg, hsl(219, 61%, 43%), hsl(219, 61%, 58%));
 
-    /* Shadows */
     --shadow-card:       0 10px 30px -12px hsl(0 0% 0% / 0.55);
     --shadow-card-hover: 0 18px 45px -15px hsl(219 61% 43% / 0.40);
     --shadow-hero:       0 22px 70px -18px hsl(219 61% 43% / 0.45);
@@ -63,7 +60,6 @@
     --font-heading: 'Plus Jakarta Sans', sans-serif;
     --font-body:    'Inter', sans-serif;
 
-    /* Sidebar */
     --sidebar-background:          240   3%  12%;
     --sidebar-foreground:          240   2%  63%;
     --sidebar-primary:             219  61%  43%;
@@ -114,10 +110,25 @@
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     cursor: none;
+    /* Prevent horizontal overflow on mobile */
+    overflow-x: hidden;
   }
 
-  a, button, [role="button"], input, textarea, select, label {
-    cursor: none;
+  /* Restore default cursor on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    body {
+      cursor: auto;
+    }
+    a, button, [role="button"], input, textarea, select, label {
+      cursor: auto;
+    }
+  }
+
+  /* Touch-device pointer cursor for desktop */
+  @media (hover: hover) and (pointer: fine) {
+    a, button, [role="button"], input, textarea, select, label {
+      cursor: none;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -132,6 +143,22 @@
   html::-webkit-scrollbar,
   body::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Minimum tap target size for touch */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better iOS input styling */
+  input, textarea, select {
+    -webkit-appearance: none;
+    appearance: none;
   }
 }
 
@@ -176,8 +203,29 @@
     box-shadow: var(--shadow-card-hover);
   }
 
+  /* Touch active state replaces hover for cards */
+  @media (hover: none) and (pointer: coarse) {
+    .hover-lift-soft:hover {
+      transform: none;
+      box-shadow: var(--shadow-card);
+    }
+    .hover-lift-soft:active {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card-hover);
+    }
+  }
+
   .bg-dark {
     background-color: hsl(var(--dark-bg));
     color: hsl(var(--dark-bg-foreground));
+  }
+
+  /* Touch-friendly minimum tap target utility */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
