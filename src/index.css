@@ -4,90 +4,104 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Palette – "Dark Neutral + Blue Accent"
+  #090909  → HSL  0   0%   4%   (almost black  – page background)
+  #1E1E20  → HSL 240   3%  12%  (very dark grey – cards / sections)
+  #3B3B3D  → HSL 240   2%  24%  (dark grey      – borders / secondary surfaces)
+  #797979  → HSL   0   0%  47%  (medium grey    – muted text / icons)
+  #9E9EA2  → HSL 240   2%  63%  (light grey     – body text)
+  #2B59B0  → HSL 219  61%  43%  (blue accent    – primary / buttons / highlights)
+*/
+
 @layer base {
   :root {
-    --background: 40 33% 98%;
-    --foreground: 222 47% 11%;
+    --background:          0   0%   4%;
+    --foreground:        240   2%  63%;
 
-    --card: 40 25% 97%;
-    --card-foreground: 222 47% 11%;
+    --card:              240   3%  12%;
+    --card-foreground:   240   2%  63%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover:           240   3%  12%;
+    --popover-foreground:240   2%  63%;
 
-    --primary: 18 88% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary:           219  61%  43%;
+    --primary-foreground:  0   0% 100%;
 
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary:         240   2%  24%;
+    --secondary-foreground:240 2%  63%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 15% 50%;
+    --muted:             240   2%  24%;
+    --muted-foreground:    0   0%  47%;
 
-    --accent: 245 72% 64%;
-    --accent-foreground: 0 0% 100%;
+    --accent:            219  61%  43%;
+    --accent-foreground:   0   0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive:         0  72%  51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 90%;
-    --input: 220 13% 90%;
-    --ring: 18 88% 60%;
+    --border:            240   2%  24%;
+    --input:             240   2%  24%;
+    --ring:              219  61%  43%;
 
     --radius: 0.75rem;
 
-    --dark-bg: 222 47% 10%;
-    --dark-bg-foreground: 40 33% 98%;
+    /* Dark hero / section backgrounds */
+    --dark-bg:             0   0%   4%;
+    --dark-bg-foreground: 240   2%  63%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(18, 88%, 60%), hsl(32, 94%, 58%));
-    --gradient-hero: linear-gradient(135deg, hsl(222, 47%, 9%) 0%, hsl(224, 40%, 15%) 45%, hsl(245, 55%, 23%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(245, 72%, 64%), hsl(265, 78%, 67%));
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(219, 61%, 43%), hsl(219, 61%, 55%));
+    --gradient-hero:    linear-gradient(135deg, hsl(0, 0%, 4%) 0%, hsl(240, 3%, 10%) 50%, hsl(219, 40%, 12%) 100%);
+    --gradient-accent:  linear-gradient(135deg, hsl(219, 61%, 43%), hsl(219, 61%, 58%));
 
-    --shadow-card: 0 10px 30px -12px hsl(222 47% 15% / 0.25);
-    --shadow-card-hover: 0 18px 45px -15px hsl(18 88% 60% / 0.45);
-    --shadow-hero: 0 22px 70px -18px hsl(18 88% 60% / 0.55);
+    /* Shadows */
+    --shadow-card:       0 10px 30px -12px hsl(0 0% 0% / 0.55);
+    --shadow-card-hover: 0 18px 45px -15px hsl(219 61% 43% / 0.40);
+    --shadow-hero:       0 22px 70px -18px hsl(219 61% 43% / 0.45);
 
     --font-heading: 'Plus Jakarta Sans', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --font-body:    'Inter', sans-serif;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 90%;
-    --sidebar-ring: 16 90% 58%;
+    /* Sidebar */
+    --sidebar-background:          240   3%  12%;
+    --sidebar-foreground:          240   2%  63%;
+    --sidebar-primary:             219  61%  43%;
+    --sidebar-primary-foreground:    0   0% 100%;
+    --sidebar-accent:              240   2%  24%;
+    --sidebar-accent-foreground:   240   2%  63%;
+    --sidebar-border:              240   2%  24%;
+    --sidebar-ring:                219  61%  43%;
   }
 
   .dark {
-    --background: 222 47% 11%;
-    --foreground: 40 33% 98%;
-    --card: 224 40% 14%;
-    --card-foreground: 40 33% 98%;
-    --popover: 224 40% 14%;
-    --popover-foreground: 40 33% 98%;
-    --primary: 16 90% 58%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 224 30% 18%;
-    --secondary-foreground: 40 33% 98%;
-    --muted: 224 30% 18%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 240 70% 62%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 40 33% 98%;
-    --border: 224 30% 18%;
-    --input: 224 30% 18%;
-    --ring: 16 90% 58%;
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 40 33% 98%;
-    --sidebar-primary: 16 90% 58%;
+    --background:          0   0%   4%;
+    --foreground:        240   2%  63%;
+    --card:              240   3%  12%;
+    --card-foreground:   240   2%  63%;
+    --popover:           240   3%  12%;
+    --popover-foreground:240   2%  63%;
+    --primary:           219  61%  43%;
+    --primary-foreground:  0   0% 100%;
+    --secondary:         240   2%  24%;
+    --secondary-foreground:240 2%  63%;
+    --muted:             240   2%  24%;
+    --muted-foreground:    0   0%  47%;
+    --accent:            219  61%  43%;
+    --accent-foreground:   0   0% 100%;
+    --destructive:         0  72%  51%;
+    --destructive-foreground: 0 0% 100%;
+    --border:            240   2%  24%;
+    --input:             240   2%  24%;
+    --ring:              219  61%  43%;
+    --sidebar-background:240   3%  12%;
+    --sidebar-foreground:240   2%  63%;
+    --sidebar-primary:   219  61%  43%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 224 30% 18%;
-    --sidebar-accent-foreground: 40 33% 98%;
-    --sidebar-border: 224 30% 18%;
-    --sidebar-ring: 16 90% 58%;
+    --sidebar-accent:    240   2%  24%;
+    --sidebar-accent-foreground:240 2%  63%;
+    --sidebar-border:    240   2%  24%;
+    --sidebar-ring:      219  61%  43%;
   }
 }
 
@@ -109,17 +123,16 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
-  /* Hide scrollbar but keep scrolling */
+
   html, body {
-    scrollbar-width: none;          /* Firefox */
-    -ms-overflow-style: none;       /* IE / Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   html::-webkit-scrollbar,
   body::-webkit-scrollbar {
-    display: none;                  /* Chrome / Safari */
+    display: none;
   }
-
 }
 
 @layer utilities {
